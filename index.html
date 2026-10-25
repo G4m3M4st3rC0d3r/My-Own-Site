@@ -8,21 +8,73 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-            body {
-            background-color: lightblue;
+        :root{
+            --length: 1000px;
+            --button_color: lightblue;
+            --text_color: #000000;
+            --heading_bg: rgba(255, 255, 255, 0.65);
+            --heading_border: rgba(255, 255, 255, 0.8);
+            --p_bg: rgba(128, 128, 128, 0.4);
+            --p_border: rgba(128, 128, 128, 0.8);
+            --button_bg: #2b2b2b;
+            --button_text: #ffffff;
+            --button_hover_bg: #444444;
+        }
+        body.dark-mode {
+            --button_color: #121824;
+            --text_color: #ffffff;
+            --heading_bg: rgba(30, 41, 59, 0.85);
+            --heading_border: rgba(51, 65, 85, 0.8);
+            --p_bg: rgba(30, 41, 59, 0.6);
+            --p_border: rgba(71, 85, 105, 0.6);
+            --button_bg: #38bdf8;
+            --button_text: #0f172a;
+            --button_hover_bg: #7dd3fc;
+        }
+        body{
+            background-color: var(--button_color);
+            color: var(--text_color);
             font-family: 'Poppins', sans-serif;
+            text-align: center;
+            padding: 20px;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+        .theme_button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: var(--button_bg);
+            color: var(--button_text);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .theme_button:hover {
+            transform: translateY(2px);
+            background-color: var(--button_hover_bg);
         }
         h1, h2 {
             background-color: rgba(255, 255, 255, 0.65);
             padding: 15px 20px;
             border-radius: 12px;
             border: 2px solid rgba(255, 255, 255, 0.8);
+            max-width: var(--length);
+            margin: 20px auto;
         }
         p {
             background-color: rgba(128, 128, 128, 0.4);
             padding: 15px 20px;
             border-radius: 12px;
             border: 2px solid rgba(128, 128, 128, 0.8);
+            max-width: var(--length);
+            margin: 20px auto;
         }
         a {
             display: inline-block;
@@ -32,27 +84,53 @@
             color: #ffffff;
             text-decoration: none;
             border-radius: 8px;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        a:hover {
+            background-color: #444444;
+            transform: translateY(2px);
+        }
+        img {
+            transition: transform 0.2s ease;
+        }
+        img:hover {
+            transform: translateY(6px);
         }
     </style>
 </head>
 <body>
+    <button class="theme_button" id="Theme_Button" onclick="toggleTheme()">🌙 Dark Mode</button>
     <h1> Top 3 Speed Cubes</h1>
     <p> Discover 3 of the best speed cubes in the world.</p>
 
     <h2> 1. MoYu Weilong V11</h2>
     <img src="MoYu.png" alt="MoYu WeiLong V11" width="250">
     <p> This cube is known for its amazing corner cutting, strong magnets and quick turning.</p>
-    <a href="https://speedcubeshop.com/products/moyu-weilong-3x3-v11-magnetic-maglev-20-magnet-ball-core-uv-coated" target="_blank"> Click here to check it out!</a>"
+    <a href="https://speedcubeshop.com/products/moyu-weilong-3x3-v11-magnetic-maglev-20-magnet-ball-core-uv-coated" target="_blank"> Click here to check it out!</a>
 
     <h2> 2. GAN 12 Pro MagLev </h2>
     <img src="Gan.png" alt="GAN 12 Pro MagLev" width="250">
     <p> While this cube is kind of old compared with its successors, it is still revolutionary by any means. One of the smoothest Maglev cubes on the market.</p>
-    <a href="https://speedcubeshop.com/products/gan-12-3x3-magnetic-maglev-core-magnets-uv-coated" target="_blank"> Click here to check it out!</a>"
+    <a href="https://speedcubeshop.com/products/gan-12-3x3-magnetic-maglev-core-magnets-uv-coated" target="_blank"> Click here to check it out!</a>
 
     <h2> 3. Fanxin Hudong Light Ultra </h2>
     <img src="Fanxin.png" alt="Fanxin Hudong Light Ultra" width="250">
     <p> This was probably the first cube to ever include around 120 magnets in it. Because of its unique design and magnet placement, it is one of the fastest cubes, if tuned well. It is priced very competitively too.</p>
-    <a href="https://speedcubeshop.com/products/fanxin-light-3x3-ultra-magnetic-ball-core-maglev-uv-coated" target="_blank"> Click here to check it out!</a>"
+    <a href="https://speedcubeshop.com/products/fanxin-light-3x3-ultra-magnetic-ball-core-maglev-uv-coated" target="_blank"> Click here to check it out!</a>
+    <script>
+        function toggleTheme(){
+            const body = document.body;
+            const button = document.getElementById('Theme_Button');
+            
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                button.innerHTML = '☀️ Light Mode';
+            } else {
+                button.innerHTML = '🌙 Dark Mode';
+            }
+        }
+    </script>
 
 </body>
 </html>
